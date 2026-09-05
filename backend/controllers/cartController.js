@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const UserActivity = require("../models/UserActivity");
 
 const getCart = async (req, res) => {

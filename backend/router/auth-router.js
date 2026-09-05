@@ -28,7 +28,7 @@ const adminMiddleware = require("../middlewares/admin-middleware");
 const User = require("../models/user-model");
 const Order = require("../models/order-model");
 const Product = require("../models/product");
-const Category = require("../models/category");
+const Category = require("../models/Category");
 
 // ================= MULTER CONFIG =================
 const storage = multer.diskStorage({
