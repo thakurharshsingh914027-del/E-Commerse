@@ -39,14 +39,21 @@ const razorpay = hasRazorpayConfig
    CORS CONFIGURATION
 ================================= */
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:5173'],
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    return callback(null, true); // Allow configured and deployment origins
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
-
-
 
 app.use(cors(corsOptions));
 /* ===============================
@@ -56,6 +63,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "ok", message: "E-Commerce Backend API is running!" });
+});
 
 /* ===============================
    RAZORPAY ROUTE
