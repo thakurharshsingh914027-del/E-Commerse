@@ -1,16 +1,24 @@
 import axios from 'axios';
 
+const rawBaseURL = (import.meta.env.VITE_API_URL || 'https://e-commerse-r3dd.onrender.com').trim();
+// Strip trailing /api or / from baseURL so paths starting with /api/ don't duplicate
+const baseURL = rawBaseURL.replace(/\/api\/?$/, '').replace(/\/$/, '');
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://e-commerse-r3dd.onrender.com',
+  baseURL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add auth token to requests
+// Add auth token to requests and normalize URL
 API.interceptors.request.use(
   (config) => {
+    if (config.url) {
+      // Fix any accidental double /api/api/
+      config.url = config.url.replace(/^\/api\/api\//, '/api/');
+    }
     const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
