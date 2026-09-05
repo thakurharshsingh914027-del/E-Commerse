@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed": "node seed/seed.js",
+    "seed-ai-products": "node seed/seedProducts.js",
+    "create-admin": "node seed/create-admin.js",
+    "create-vendor": "node seed/create-vendor.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.8.4",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "groq-sdk": "^0.37.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.1",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^2.2.1",
+    "openai": "^6.22.0",
+    "razorpay": "^2.9.6",
+    "seed": "^0.4.4",
+    "stripe": "^20.3.0",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
